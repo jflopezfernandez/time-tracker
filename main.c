@@ -1,5 +1,6 @@
 
 #include "includes/debug.h"
+#include "includes/google-test.h"
 #include "includes/main.h"
 #include "includes/time.h"
 #include "includes/parse-args.h"
@@ -7,11 +8,9 @@
 #include "includes/program.h"
 
 // FUTURE FEATURE: Ranks for productivity
+// FUTURE FEATURE: Google Test Framework
 
-void test() {
-  FUNCDBG
-  printf("testing testing testing... \n");
-}
+// TODO: Program still does not actually have a time tracking feature
 
 
 int main(int argc, char *argv[])
@@ -23,36 +22,31 @@ int main(int argc, char *argv[])
   //if (passedInParameters == 1)
   //return (EXIT_FAILURE);
 
-  // *** Select option from Main menu ***
   DisplayMainMenu();
-  OptionHandler userOption = (OptionHandler) promptUserForInput(INT_H);
+  GET_USER_SELECTION
+  SETUP_HANDLER_FUNCTION
 
-  // This function pointer will carry out the function the user selects
-  int (*userAction)(Progress userProgress);
-  userAction = NULL;
-
-  switch (*userOption) {
+#ifdef DISABLE
+  switch (USER_SELECTION) {
     case (TRACK_TIME):
-      //PromptForSaveFile();
-      //int userOptionLoadSaveFile = getUserInput();
-
-      //if (userOptionLoadSaveFile == FALSE) {
-        //userProgress = InitializeNewTimer();
-        //PrintUserProgress(userProgress);
-      //}
-      userAction = TrackTime;
+      SET(TrackTime);
       break;
 
     case (COUNT_DOWN):
-      userAction = CountDown;
+      SET(CountDown);
       break;
 
     default:
-      printf("[ERROR] Could not understand your input. Terminating... \n\n");
+      ERRMSG("Could not understand your input.", ERRONEOUS_USER_INPUT)
   }
+#endif
 
-  // Carry out user action selected
-  userAction(options->userProgress);
+  // Carry out selected user action
+  VERIFY_NONNEGATIVE_EXIT_STATUS(userAction(options->userProgress))
+
+  //TERMINATE_PROGRAM
+  testing::InitGoogleTest(&argc,argv);
+  RUN_ALL_TESTS();
 
   return (EXIT_SUCCESS);
 }

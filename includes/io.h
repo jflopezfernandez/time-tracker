@@ -26,11 +26,14 @@
 typedef int Type;
 
 void* promptUserForInput(Type inputNeeded);
-#define SELECT_OPTION(x) OptionHandler x = (OptionHandler) promptUserForInput();
+#define SELECT_OPTION(x) OptionHandler x = (OptionHandler) promptUserForInput(INT_H);
 
 Option PromptForSaveFile();
 
 Status SaveProgress();
 Status LoadProgress();
+
+#define GET_USER_SELECTION OptionHandler userOption = (OptionHandler) promptUserForInput(INT_H);
+#define USER_SELECTION *userOption
 
 #endif //TRACKER_IO_H

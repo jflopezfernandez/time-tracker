@@ -47,7 +47,7 @@ void* promptUserForInput(Type inputNeeded) {
 Option PromptForSaveFile() {
   printf("Would you like to load your progress from file? ");
 
-  OptionHandler loadFile = (OptionHandler) promptUserForInput();
+  OptionHandler loadFile = (OptionHandler) promptUserForInput(INT_H);
   PRINT("User response: ", *loadFile)
 
   return (*loadFile);

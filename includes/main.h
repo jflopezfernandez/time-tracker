@@ -21,6 +21,7 @@
 #include <stdint.h>
 #include <limits.h>
 #include <setjmp.h>
+#include <ctype.h>
 #include <errno.h>
 #include <time.h>
 #include <math.h>

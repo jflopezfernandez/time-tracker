@@ -32,15 +32,23 @@ void SetTimeStructValues(Progress time, uint64_t h, uint64_t m, uint64_t s) {
 
 void PrintUserProgress(Progress time) {
   printf("Current Progress: \n");
-  printf("\tHours: %U64\n", time->hours);
-  printf("\tMinutes: %U64\n", time->minutes);
-  printf("\tSeconds: %U64\n", time->seconds);
+  printf("\tHours: %U64u\n", time->hours);
+  printf("\tMinutes: %U64u\n", time->minutes);
+  printf("\tSeconds: %U64u\n", time->seconds);
 }
 
-int TrackTime(Progress userProgress) {
+Status TrackTime(Progress userProgress) {
+  //PromptForSaveFile();
+  //int userOptionLoadSaveFile = getUserInput();
+
+  //if (userOptionLoadSaveFile == FALSE) {
+  //userProgress = InitializeNewTimer();
+  //PrintUserProgress(userProgress);
+  //}
+
   return (ERROR);
 }
 
-int CountDown(Progress userProgress) {
+Status CountDown(Progress userProgress) {
   return (ERROR);
 }

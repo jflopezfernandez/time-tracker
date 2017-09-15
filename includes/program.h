@@ -28,10 +28,16 @@ typedef t_ProgramOptions* ProgramOptions;
 
 ProgramOptions InitializeProgram();
 
-
 void DisplayMainMenu();
 
-#define INITIALIZE_PROGRAM ProgramOptions options = InitializeProgram(); \
-                           atexit(test);
+void TerminateProgram(ProgramOptions options);
+
+#define INITIALIZE_PROGRAM ProgramOptions options = InitializeProgram();
+#define TERMINATE_PROGRAM TerminateProgram(options); \
+                          return (EXIT_SUCCESS);
+#define SETUP_HANDLER_FUNCTION int (*userAction)(Progress userProgress); \
+                               userAction = NULL;
+
+#define SET(fn) userAction = fn;
 
 #endif //TRACKER_PROGRAM_H

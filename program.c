@@ -29,3 +29,8 @@ void DisplayMainMenu() {
   printf("\t2. Countdown Timer \n");
   printf("\n\t0. Exit \n");
 }
+
+void TerminateProgram(ProgramOptions options) {
+  FUNCDBG
+  PRINTLN("[placeholder...] \n")
+}
